@@ -151,7 +151,6 @@ def plot_f1_score(filenames):
     plt.show()
 
 
-# 使用示例
 filenames = ['ACO_results.csv', 'BWOA_results.csv',
              'ABC_results.csv', 'GJO_results.csv',
              'GOA_results.csv', 'PLO_results.csv',

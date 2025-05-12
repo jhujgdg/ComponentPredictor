@@ -1,4 +1,6 @@
+import pickle
 from collections import defaultdict
+import torch
 from sklearn.model_selection import train_test_split
 import numpy as np
 import torch
@@ -26,6 +28,7 @@ def get_data(fname):
 
     all_component_ids = []
 
+    # 遍历 output_df 中的每一行
     for index, row in output_df.iterrows():
         component_ids = row['构件ID']
 
@@ -43,6 +46,14 @@ def get_data(fname):
     # 将文本转换为序列
     sequences = tokenizer.texts_to_sequences(sentences)
     num_embeddings = len(tokenizer.word_index) + 1
+    # 构建输入序列和输出标签
+    # input_sequences = []
+    # output_labels = []
+    # for sequence in sequences:
+    #     for i in range(1, len(sequence)):
+    #         n_gram_sequence = sequence[:i + 1]
+    #         input_sequences.append(n_gram_sequence[:-1])
+    #         output_labels.append(n_gram_sequence[-1])
     input_sequences = []
     output_labels = defaultdict(list)  # 使用 defaultdict 来收集标签
 
@@ -73,11 +84,26 @@ def get_data(fname):
     max_sequence_len = max([len(x) for x in input_sequences])
     input_sequences = np.array(pad_sequences(input_sequences, maxlen=max_sequence_len, padding='pre'))
     # 创建一个列表,用于存储每个输入序列对应的标签列表
+    # all_labels = get_all_labels(input_sequences,output_labels)
+    # print(all_labels)
     input = torch.tensor(input_sequences)
     labels = torch.tensor(labels,dtype=torch.float32)
 
     X_train, X_test, y_train, y_test= train_test_split(input, labels, test_size=0.3, random_state=42)
+
+    # X_train = X_train.numpy()  # 转换为 NumPy 数组
+    # X_train = pd.DataFrame(X_train)
     Y_train = pd.Series(y_train, name='label')
+    # X_train, y_train,all_labels = Oversampling(X_train, Y_train)
+
+    # torch.save({
+    #     'X_train': X_train,
+    #     'X_test': X_test,
+    #     'y_train': y_train,
+    #     'y_test': y_test,
+    #     'num_embeddings': num_embeddings,
+    #     'Y_train': Y_train
+    # }, 'data.pth1')
     return X_train, X_test, y_train, y_test, num_embeddings,Y_train
 
 
@@ -93,6 +119,18 @@ def load_data():
 
 
 if __name__ == '__main__':
-    f1name = "component_bussion.xlsx"
+    f1name = "D:\学习\lstm预测\component_bussion.xlsx"
     get_data(f1name)
-
+    # # 获取数据集中的唯一样本数量
+    # num_unique_samples = dataset.unique(dim=0).size(0)
+    # print(output_labels.shape)
+    # print(test_labels.shape)
+    # print(f"Number of unique samples: {num_unique_samples}")
+    # # 找出所有重复的样本
+    # duplicate_mask = dataset.unique(dim=0, return_inverse=True)[1].bincount() > 1
+    # duplicate_samples = dataset[duplicate_mask.nonzero().squeeze()]
+    # print(f"Number of duplicate samples: {duplicate_samples.size(0)}")
+    # print("Duplicate samples:")
+    # print(duplicate_samples)
+    # for i in all_labels_train:
+    #     print(i)

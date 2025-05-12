@@ -4,6 +4,7 @@ import torch.nn as nn
 
 class BinaryCrossEntropyLoss:
     def __init__(self):
+        # 使用 PyTorch 的 BCEWithLogitsLoss
         self.loss_fn = nn.BCEWithLogitsLoss()
 
     def compute_loss(self, predictions, targets):
@@ -14,6 +15,7 @@ class BinaryCrossEntropyLoss:
         :param targets: 真实标签，应该是 0 或 1
         :return: 计算得到的损失值
         """
+        # 确保 targets 是 float 类型
         targets = targets.float()
 
         # 计算损失

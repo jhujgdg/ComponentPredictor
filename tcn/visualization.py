@@ -38,12 +38,9 @@ class Plotter:
 
     def plot_precision_recall(self):
         plt.figure(figsize=(8, 5))
-        plt.plot(range(1, len(self.train_precisions) + 1), self.train_precisions, label='Train Precision', marker='o',
-                 markersize=3)
-        plt.plot(range(1, len(self.test_precisions) + 1), self.test_precisions, label='Test Precision', marker='o',
-                 markersize=3)
-        plt.plot(range(1, len(self.train_recalls) + 1), self.train_recalls, label='Train Recall', marker='o',
-                 markersize=3)
+        plt.plot(range(1, len(self.train_precisions) + 1), self.train_precisions, label='Train Precision', marker='o', markersize=3)
+        plt.plot(range(1, len(self.test_precisions) + 1), self.test_precisions, label='Test Precision', marker='o', markersize=3)
+        plt.plot(range(1, len(self.train_recalls) + 1), self.train_recalls, label='Train Recall', marker='o', markersize=3)
         plt.plot(range(1, len(self.test_recalls) + 1), self.test_recalls, label='Test Recall', marker='o', markersize=3)
         plt.title('Precision and Recall vs Iterations')
         plt.xlabel('Iterations')
