@@ -152,7 +152,7 @@ def plot_f1_score(filenames):
 
 
 # 使用示例
-filenames = ['BILSTM_results.csv', 'LSTM_results.csv',
+filenames = ['BILSTM_results.csv', 'Lstm_results.csv',
              'RNN_results.csv', 'TCN_results.csv',]
 
 plot_loss(filenames)
