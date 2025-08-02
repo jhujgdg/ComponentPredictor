@@ -2,7 +2,7 @@ import numpy as np
 from tqdm import tqdm
 import torch
 from tcn.criterion import BinaryCrossEntropyLoss, calculate_accuracy
-from tcn.model import TemporalConvNet
+from ..model import TemporalConvNet
 
 
 def fobj(model_param, x):

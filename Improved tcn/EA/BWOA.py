@@ -2,8 +2,8 @@ from tqdm import tqdm
 import numpy as np
 import torch
 from pygcn import accuracy
-from tcn.model import TemporalConvNet
-from tcn.criterion import BinaryCrossEntropyLoss, calculate_accuracy
+from ..model import TemporalConvNet
+from ..criterion import BinaryCrossEntropyLoss, calculate_accuracy
 
 
 def fobj(model_param, x):

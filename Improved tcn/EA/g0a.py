@@ -3,8 +3,8 @@ from scipy.special import gamma
 from tqdm import tqdm
 import torch
 from pygcn import accuracy
-from tcn.criterion import BinaryCrossEntropyLoss, calculate_accuracy
-from tcn.model import TemporalConvNet
+from ..criterion import BinaryCrossEntropyLoss, calculate_accuracy
+from ..model import TemporalConvNet
 
 
 def fobj(model_param, x):
